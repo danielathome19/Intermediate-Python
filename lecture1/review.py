@@ -13,7 +13,8 @@ def hello_user() -> None:
     """
     Prompts the user for their name and prints "Hello {name}".
     """
-    ...  # TODO
+    name = input("Enter your name: ")
+    print(f"Hello {name}")  # string interpolation (f-strings)
 
 
 def calculate_mpg(miles: int, gallons: int) -> float:
@@ -21,7 +22,7 @@ def calculate_mpg(miles: int, gallons: int) -> float:
     Calculates the MPG (rounded to the nearest 10th gal) of a car given its 
     miles and gallons used.
     """
-    ...  # TODO
+    return round(float(miles) / float(gallons), 1)
 
 
 def random_circle_area(radius: float) -> float:
@@ -29,7 +30,9 @@ def random_circle_area(radius: float) -> float:
     Calculates the area of a circle using math.pi, then applies a 
     random multiplier between 1.0 and 2.0 using the random module.
     """
-    ...  # TODO
+    base_area = math.pi * (radius ** 2)
+    multiplier = random.uniform(1.0, 2.0)
+    return base_area * multiplier
 
 
 def calculate_egg_price(total_eggs: int) -> float:
@@ -41,35 +44,64 @@ def calculate_egg_price(total_eggs: int) -> float:
     11+     dozen => $0.35/dozen
     Extra eggs    => 1/12th the per dozen price
     """
-    ...  # TODO
+    dozens = total_eggs // 12  # floor divide (divide and round down to nearest int)
+    extras = total_eggs % 12
+    # dozens, extras = divmod(total_eggs, 12)
+
+    if dozens < 4:
+        price = 0.50
+    elif dozens >= 4 and dozens < 6:  # Compound condition
+        price = 0.45
+    elif 6 <= dozens < 11:  # Chained condition
+        price = 0.40
+    else:
+        price = 0.35
+
+    total = (dozens * price) + (extras * (price / 12.0))
+    return round(total, 2)
 
 
 def largest_power_of_two(limit: int) -> int:
     """
     Returns the largest power of 2 that is less than or equal to the limit.
     """
-    ...  # TODO
+    power = 1
+    while power * 2 <= limit:
+        power *= 2
+    return power
 
 
 def sum_of_squares(n: int) -> int:
     """
     Calculates the sum of all squared numbers from 1 up to and including n.
     """
-    ...  # TODO
+    total = 0
+    for i in range(1, n + 1):
+        total += i ** 2
+    return total
 
 
 def filter_positive(numbers: list[int]) -> list[int]:
     """
     Takes a list of numbers and returns a new list containing only the positive ones.
     """
-    ...  # TODO
+    positives = []
+    for num in numbers:
+        if num > 0:
+            positives.append(num)
+    return positives
 
 
 def count_vowels(text: str) -> int:
     """
     Returns the integer count of vowels (a, e, i, o, u) in a string, ignoring case.
     """
-    ...  # TODO
+    vowels = "aeiou"
+    count = 0
+    for char in text.lower():
+        if char in vowels:
+            count += 1
+    return count
 
 
 def generate_report(name: str, scores: list[float]) -> str:
@@ -78,8 +110,16 @@ def generate_report(name: str, scores: list[float]) -> str:
     returning a string formatted exactly as:
     "{name} has an average score of {average}."
     """
+    # Functions can be nested inside other functions
+    def calculate_average(scores):
+        # if not scores:
+        #     return 0.0
+        # return sum(scores) / len(scores)
+        return 0.0 if not scores else sum(scores) / len(scores)
+        # or just use mean() from the statistics module
+
     average = calculate_average(scores)
-    ...  # TODO
+    return f"{name} has an average score of {round(average, 1)}."
 
 
 # ==========================================

@@ -11,7 +11,10 @@ def multiply_by_index(numbers: list[int]) -> list[int]:
     is multiplied by its original index.
     Example: [5, 10, 15] -> [0, 10, 30]
     """
-    ...  # TODO
+    result = []  # list()
+    for i in range(len(numbers)):
+        result.append(numbers[i] * i)
+    return result
 
 
 def split_evens_odds(numbers: list[int]) -> list[list[int]]:
@@ -20,7 +23,14 @@ def split_evens_odds(numbers: list[int]) -> list[list[int]]:
     the first containing all even numbers, and the second containing all odd numbers.
     Example: [1, 2, 3, 4] -> [[2, 4], [1, 3]]
     """
-    ...  # TODO
+    evens = []
+    odds = []
+    for n in numbers:
+        if n % 2 == 0:
+            evens.append(n)
+        else:
+            odds.append(n)
+    return [evens, odds]
 
 
 def get_stats(numbers: list[int]) -> tuple[int, int, int] | None:
@@ -29,7 +39,9 @@ def get_stats(numbers: list[int]) -> tuple[int, int, int] | None:
     Packs and returns these three values in a single immutable tuple in that order.
     Returns None if the list is empty.
     """
-    ...  # TODO
+    if not numbers:
+        return None
+    return (min(numbers), max(numbers), sum(numbers))
 
 
 def swap_coordinates(coords: list[tuple[int, int]]) -> list[tuple[int, int]]:
@@ -38,7 +50,10 @@ def swap_coordinates(coords: list[tuple[int, int]]) -> list[tuple[int, int]]:
     each tuple and swapping the values to (y, x). 
     Returns a new list of the swapped tuples.
     """
-    ...  # TODO
+    swapped = []
+    for x, y in coords:
+        swapped.append((y, x))
+    return swapped
 
 
 def find_common_elements(list1: list[int], list2: list[int]) -> set[int]:
@@ -46,7 +61,9 @@ def find_common_elements(list1: list[int], list2: list[int]) -> set[int]:
     Takes two lists. Converts them to sets to find the mathematical intersection 
     (elements present in both). Returns the result as a new Set.
     """
-    ...  # TODO
+    set1 = set(list1)
+    set2 = set(list2)
+    return set1.intersection(set2)  # set1 & set2
 
 
 def unique_vowels_present(text: str) -> set[str]:
@@ -54,7 +71,9 @@ def unique_vowels_present(text: str) -> set[str]:
     Takes a string. Finds all unique vowels (a, e, i, o, u) present in the text, 
     ignoring case. Returns them as a Set of lowercase characters.
     """
-    ...  # TODO
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    text_set = set(text.lower())
+    return text_set & vowels
 
 
 
