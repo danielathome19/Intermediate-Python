@@ -65,7 +65,7 @@ if __name__ == "__main__":
         recv_thread.start()
         send_thread.join()
         recv_thread.join()
-        # Daemon threads end with the main thread ends
+        # Daemon threads exit when the main thread exits
     except KeyboardInterrupt:
         disconnected = True
         print("\nDisconnecting... Press enter to exit.")
